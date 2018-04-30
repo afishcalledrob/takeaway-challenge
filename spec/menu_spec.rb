@@ -1,14 +1,18 @@
 require 'menu'
+
 describe Menu do
-  let(:menu_generator) { instance_double 'Menu_generator'}
-  subject(:menu) { described_class.new(restaurant: 'Zizzis', menu_generator: menu_generator) }
-  before { allow(menu_generator).to receive(:list).with(anything).and_return([]) }
+   subject(:menu) { described_class.new({ "Fish and Chips" => 8.00 }) }
 
-  describe '#initialize' do
 
-    it 'defaults to empty list' do
-      expect(subject.dishes).to be_empty
-    end
+   describe '#display' do
+     it 'will show the menu with prices' do
+       expect(menu.display).to eq({ "Fish and Chips" => 8.00 })
+     end
+   end
 
-  end
-end
+   describe '#price' do
+     it 'displays price of a selected dish' do
+       expect(menu.price("Fish and Chips")).to eq 8.00
+     end
+   end
+ end
